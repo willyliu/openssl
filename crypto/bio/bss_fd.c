@@ -246,9 +246,10 @@ int BIO_fd_non_fatal_error(int err)
 #  endif
 # endif
 
-# if defined(ENOTCONN)
-    case ENOTCONN:
-# endif
+// willy: Treat ENOTCONN as fatal error so that SSL_read won't stuck in an infinite loop
+// # if defined(ENOTCONN)
+//     case ENOTCONN:
+// # endif
 
 # ifdef EINTR
     case EINTR:
